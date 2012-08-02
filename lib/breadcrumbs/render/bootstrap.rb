@@ -25,9 +25,12 @@ class Breadcrumbs
         end
 
         text, url, options = *item
-        text = [escape(text), suffix].join
         text = wrap_item(url, text, options)
-        tag(:li, text, html_opts)
+        text = tag(:li, text, html_opts)
+        if separator and i != size - 1
+          text = text + suffix
+        end  
+        return text
       end
 
       protected
